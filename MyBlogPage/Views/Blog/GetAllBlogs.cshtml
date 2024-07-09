@@ -1,0 +1,51 @@
+﻿@model IEnumerable<BlogDTO>
+
+@{
+    ViewData["Title"] = "Blog Yazıları";
+    var authorPostCounts = ViewBag.AuthorPostCounts as Dictionary<int, int>;
+    var categoryCounts = ViewBag.CategoryCounts as Dictionary<int, int>;
+
+}
+
+<h2 class="my-4">Blog Yazıları</h2>
+
+<div class="container-fluid">
+    <div class="row">
+        @foreach (var blog in Model)
+        {
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h5 class="card-title">@blog.Title</h5>
+                        <p class="card-text"><strong>Özet:</strong> @blog.Summary</p>
+                        <p class="card-text"><strong>İçerik:</strong> @blog.Content</p>
+                        <p class="card-text"><strong>Kategori:</strong> @ViewBag.CategoryName[blog.CategoryID] (@(categoryCounts[blog.CategoryID]))</p>
+                        <p class="card-text"><strong>Yazar:</strong> @ViewBag.AuthorName[@blog.AuthorId] (@(authorPostCounts[blog.AuthorId]))</p>
+                        <p class="card-text"><strong>Tarih:</strong> @blog.Date?.ToString("dd MMM yyyy")</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .card-footer {
+        background-color: #f8f9fa;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+</style>

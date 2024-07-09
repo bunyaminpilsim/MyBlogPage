@@ -1,0 +1,54 @@
+﻿@model IEnumerable<BlogDTO>
+
+@{
+    ViewData["Title"] = "Yazılar";
+}
+
+<h2 class="my-4 text-center">Yazılar</h2>
+
+<div class="container">
+    <div class="row justify-content-center">
+        @foreach (var blog in Model)
+        {
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 shadow-sm border-0">
+                   
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@blog.Title</h5>
+                        <p class="card-text">@blog.Summary</p>
+                    </div>
+                    <div class="card-footer d-flex justify-content-between">
+                        <a href="/Blog/UpdateBlog/@blog.Id" class="btn btn-primary">Güncelle</a>
+                        <a href="/Blog/DeleteBlog/@blog.Id" class="btn btn-danger">Sil</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .card {
+        border-radius: 15px;
+        overflow: hidden;
+    }
+
+    .card-img-top {
+        border-top-left-radius: 15px;
+        border-top-right-radius: 15px;
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+    }
+
+    .btn-danger {
+        background-color: #dc3545;
+        border-color: #dc3545;
+    }
+
+    .card-footer {
+        background-color: #f8f9fa;
+    }
+</style>

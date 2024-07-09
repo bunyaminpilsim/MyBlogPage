@@ -1,0 +1,30 @@
+﻿@model IEnumerable<AuthorDTO>
+
+@{
+    ViewData["Title"] = "Yazar Listesi";
+}
+
+<h2 class="my-4">Yazar Listesi</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Numara</th>
+            <th>Adı</th>
+            <th>İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var author in Model)
+        {
+            <tr>
+                <td>@author.Id</td>
+                <td>@author.Name</td>
+                <td>
+                    <a href="/Author/UpdateAuthor?id=@author.Id" class="btn btn-primary">Güncelle</a>
+                    <a href="/Author/DeleteAuthor?id=@author.Id" class="btn btn-primary">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
